@@ -1,0 +1,123 @@
+﻿body {
+    background: url(../Images/bgAdmin.jpg) top fixed;
+    font-size: 16px;
+    font-family: Calibri;
+}
+
+body::-webkit-scrollbar{
+    width:0px;
+}
+
+.bi-bookmark-x-fill{
+    color:#860e0e;
+    font-size:1.6em;
+}
+
+details {
+    max-height: 5em;
+    overflow: hidden;
+    transition: max-height 400ms ease-out;
+    background-color: #09361c66;
+    border-radius: 4px;
+}
+
+details::-webkit-scrollbar{
+    width:0px;
+}
+    details[open] {
+        max-height: 60vh; 
+        transition: max-height 400ms ease-out; 
+    }
+
+summary {
+    justify-content:start;
+    column-gap:0.5em;
+    align-items:center;
+    display:flex;
+    list-style:none;
+    font-family: Candara;
+    font-weight: 900;
+    font-size: 2.4em;
+    margin-bottom:8px;
+}
+    summary i {
+        font-size: 0.8em;
+        transition: all 0.2s ease-out;
+    }
+
+details[open] summary i{
+    transform:rotate(90deg);
+}
+
+details[open] summary {
+    color: lightgreen !important;
+    transition: all 0.3s ease-out;
+}
+
+.tabla-personalizada {
+    width: 100%;
+    overflow-y:auto;
+    border-radius: 4px;
+    background-color: #ffffff72;
+    text-align: center;
+}
+
+    .tabla-personalizada thead th {
+        padding: 8px 12px;
+        border-bottom: 2px solid #09552a;
+        color: #225018;
+        font-size: 1.2em;
+    }
+
+    .tabla-personalizada th {
+        padding: 8px 12px;
+        color: #09552a;
+        font-size: 1.1em;
+    }
+
+    .tabla-personalizada td {
+        padding: 8px 12px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+.table-responsive{
+    border-radius:4px;
+    height:40vh;
+}
+
+.table-responsive::-webkit-scrollbar {
+    background-color: #ffffff71;
+    height: 4px;
+    width:4px;
+    border-radius: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #ace5aa;
+    border-radius: 8px;
+}
+
+    .table-responsive::-webkit-scrollbar-thumb:horizontal {
+        width: 50%;
+    }
+
+.input-group {
+    padding:0;
+    border: 2px solid #09361c;
+    border-radius: 8px;
+}
+
+    .input-group input, .input-group input:focus {
+        background-color: #fff9;
+    }
+
+.btn-success {
+    white-space: nowrap;
+}
+
+@media (width < 768px){
+    details[open]{
+        max-height:70vh;
+    }
+}

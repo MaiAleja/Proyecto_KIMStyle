@@ -1,0 +1,86 @@
+﻿body {
+    background: url(../Images/bgEmpleado.jpg) top;
+    background-size: cover;
+    font-size: 16px;
+    font-family: Calibri;
+}
+
+h1 {
+    font-family: Candara;
+    font-weight: 900;
+    font-size: 3em;
+}
+
+.tabla-personalizada {
+    width: 100%;
+    border-radius: 4px;
+    background-color: #ffffff3e;
+    text-align: center;
+    overflow-x: auto;
+}
+
+    .tabla-personalizada thead th {
+        padding: 8px 12px;
+        border-bottom: 2px solid #500933;
+        color: #500933;
+        font-size: 1.2em;
+    }
+
+    .tabla-personalizada th {
+        padding: 8px 12px;
+        color: #660a40;
+        font-size: 1.1em;
+    }
+
+    .tabla-personalizada td {
+        padding: 8px 12px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+.table-responsive::-webkit-scrollbar {
+    background-color: #ffffff71;
+    height: 4px;
+    border-radius: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #660a40;
+    border-radius: 8px;
+}
+
+    .table-responsive::-webkit-scrollbar-thumb:horizontal {
+        width: 50%;
+    }
+
+.input-group {
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.btn-success {
+    white-space: nowrap;
+    width: 30%;
+}
+
+.btn-imagen{
+    background-color:#660a40;
+    color:aliceblue;
+}
+
+    .btn-imagen:hover, .btn-imagen:active, .btn-imagen:visited{
+        background-color: #500933 !important;
+        color: aliceblue !important;
+    }
+
+.img-container {
+    display: flex;
+}
+
+    .img-container img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: 4px;
+        object-fit: cover;
+        object-position: center center;
+    }

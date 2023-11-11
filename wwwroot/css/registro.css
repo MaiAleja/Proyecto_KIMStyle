@@ -1,0 +1,57 @@
+﻿body {
+    background: url(../Images/bgRed.jpg) top;
+    background-size: cover;
+    font-size:16px;
+    font-family:Calibri;
+}
+
+h1{
+    font-family:Candara;
+    font-weight:900;
+    font-size:3em;
+}
+
+body::-webkit-scrollbar{
+    width:0;
+}
+
+.login_icon {
+    font-size: 150px;
+    color: aliceblue;
+}
+
+.input-bg-custom {
+    background-color: transparent;
+    color: aliceblue;
+}
+
+.form-floating input:focus {
+    color: aliceblue;
+    background-color: transparent;
+}
+
+.form-control:focus + .form-label::after {
+    background-color: transparent !important;
+}
+
+.form-control:focus + .form-label {
+    color: aliceblue !important;
+}
+
+.form-label::after {
+    background-color: transparent !important;
+}
+
+.form-floating > .form-control-plaintext ~ label, .form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-select ~ label {
+    color: aliceblue;
+}
+
+.btn-registro, .btn-registro:hover, .btn-registro:focus, .btn-registro:active {
+    color: #7e1717;
+    font-weight: 600;
+}
+
+.registro-logo{
+    width:36%;
+    border-radius:10%;
+}

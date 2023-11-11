@@ -1,0 +1,92 @@
+﻿body {
+    background: url(../Images/bgAdmin.jpg) top;
+    background-size: cover;
+    font-size: 16px;
+    font-family: Calibri;
+}
+
+h1 {
+    font-family: Candara;
+    font-weight: 900;
+    font-size: 3em;
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+}
+
+.form-control {
+    border: #afe8cfff 2px solid;
+}
+
+.input-perfil {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+    opacity:0;
+    pointer-events:none;
+}
+
+    .input-perfil label {
+        margin: 0;
+        margin-right: 2%;
+        width: 40%;
+        color: #975d0aff;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .input-perfil input {
+        background: transparent;
+    }
+
+.form-control[type=file] {
+    padding: 14px 8px;
+}
+
+    .form-control[type=file]::-webkit-file-upload-button {
+        display: none;
+    }
+
+    .form-control[type=file]::file-selector-button {
+        display: none;
+    }
+
+
+.input-bg-custom {
+    background-color: transparent;
+    color: #afe8cfff;
+}
+
+.form-floating input:focus {
+    color: #afe8cfff;
+    background-color: transparent;
+}
+
+.form-control:focus + .form-label::after {
+    background-color: transparent !important;
+}
+
+.form-control:focus + .form-label {
+    color: #afe8cfff !important;
+}
+
+.form-label::after {
+    background-color: transparent !important;
+}
+
+.form-floating > .form-control-plaintext ~ label, .form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-select ~ label {
+    color: #afe8cfff;
+}
+
+.btn-agregar-empleado, .btn-agregar-empleado:hover, .btn-agregar-empleado:focus, .btn-agregar-empleado:active {
+    font-weight: 600;
+    border: 2px solid #afe8cfff;
+    color: #afe8cfff;
+}
+
+.registro-logo {
+    width: 36%;
+    border-radius: 10%;
+}
