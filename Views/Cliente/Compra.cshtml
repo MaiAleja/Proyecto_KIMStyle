@@ -1,0 +1,46 @@
+﻿@using System.Globalization;
+@{
+    ViewData["Title"] = "Compra";
+}
+
+@section estilo{
+    <link rel="stylesheet" href="~/css/compra.css" asp-append-version="true" />
+}
+<div class="row justify-content-center">
+    @foreach (Producto producto in ViewBag.listaProductosCarrito)
+    {
+        <div class="d-flex ms-0 ms-md-4 col-11 col-md-10 col-lg-8 col-xl-5 bg-opacity-50 my-2 p-sm-2 bg-light text-black justify-content-between rounded-2">
+            <div class="row justify-content-center info_contenedor">
+            @if (producto.Imagen != null)
+            {
+                <div class="img-container col-4">
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(producto.Imagen)" />
+                </div>
+            }
+                <div class="col-8">
+                    <div class="row justify-content-evenly align-items-center ">
+                        <span class="col-12 mt-2 h4 fw-bold text-center ">@producto.Tipo_Prenda.descripcion @producto.Tipo_Marca.descripcion</span>
+                        <p class="mt-2 col-8 col-sm-4 card-text badge py-3 px-4 text-bg-warning">@producto.valor.ToString("C", new CultureInfo("es-CO"))</p>
+                        <a asp-action="Eliminar_Producto" asp-controller="Cliente" asp-route-cod_producto="@producto.cod_producto" class="col-8 col-sm-4 btn btn-danger fw-bold bg-opacity-50">Eliminar</a>
+                        <div class="w-75 px-5 input-group mb-3">
+                            <span class="input-group-text fw-bolder boton-menos"><i class="bi bi-dash-lg"></i></span>
+                          <input type="number" min="1" value="1" data-max="@producto.cantidad" data-cod_producto="@producto.cod_producto" class="form-control text-center fw-bold input-cantidad" disabled placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text fw-bolder boton-mas"><i class="bi bi-plus-lg"></i></span>
+                        </div>    
+                </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row justify-content-around align-items-center mt-4 text-white p-3 ">
+    <h4 class="col-8 bg-warning rounded-2 p-3 text-black text-center">Total compra <span id="total-compra">@ViewBag.totalCompra.ToString("C", new CultureInfo("es-CO"))</span></h4>
+    <form class="col-8 col-md-2" asp-action="Finalizar_Compra" asp-controller="Cliente" method="post">
+    <button class="p-3 fw-bold btn btn-success"><i class="bi bi-coin me-2"></i>Comprar</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/CompraBotonesInteractivos.js"></script>
+}

@@ -1,0 +1,127 @@
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Registro Empleado";
+    string mensaje_contrasena = "Se debe tener minimo 8 caracteres, incluyendo minimo 1 Mayuscula, 1 Minuscula, 1 numero y 1 caracter especial";
+}
+
+@section estilo{
+    <link rel="stylesheet" href="~/css/agregar_empleado.css" asp-append-version="true" />
+}
+
+@section links_extras{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Admin" asp-action="Registro_Empleado">Registro Empleados</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Seccion Cliente</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Empleado" asp-action="Index">Seccion Empleado</a>
+    </li>
+    <li class="nav-item">
+        <a class="active text-white fw-bold nav-link btn btn-danger" asp-controller="Home" asp-action="Cerrar_Sesion">Cerrar Sesion</a>
+    </li>
+}
+
+<div class="container">
+    @if (ViewBag.error != null)
+    {
+        <div class="row bg-white bg-opacity-50 rounded-2 mt-3 p-2 justify-content-center text-center align-items-center">
+            <i class="col-1 bi bi-bookmark-x-fill text-danger"></i>
+            <p class="col-10 text-danger h4 m-0 fw-bolder text-center">@ViewBag.error</p>
+            <i class="col-1 bi bi-bookmark-x-fill text-danger"></i>
+        </div>
+    }
+    <div class="row">
+        <form class="col-12" asp-action="@ViewBag.metodo" asp-controller="Admin" method="post" enctype="multipart/form-data">
+            <div class="row d-flex justify-content-center align-items-start ">
+                <div class="col-lg-5 col-md-8 col-sm-12 mt-5 px-4 d-flex position-relative flex-wrap justify-content-center rounded-1 box-shadow">
+                    <div class="form-floating mb-3 w-100">
+                        <input asp-for="nombres" value="@Model.nombres" type="text" minlength="3" class="form-control input-bg-custom" id="nombresInput" placeholder="Example" autocomplete="nope">
+                        <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="nombresInput">
+                            <i class="bi bi-alphabet me-2" style="font-size: 2rem;"></i>
+                            Nombres
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 w-100">
+                        <input asp-for="genero" value="@Model.genero" list="generosLista" type="text" class="form-control input-bg-custom" id="generoInput" placeholder="Password" autocomplete="nope">
+                        <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="generoInput">
+                            <i class="bi bi-gender-ambiguous me-2" style="font-size: 1.5rem;"></i>
+                            Genero
+                        </label>
+                        <datalist id="generosLista">
+                            <option value="Masculino" />
+                            <option value="Femenino" />
+                            <option value="No Binario" />
+                        </datalist>
+                    </div>
+                    <div class="form-floating mb-3 w-100">
+                        <input asp-for="direccion" value="@Model.direccion" type="text" minlength="8" class="form-control input-bg-custom" id="direccionInput" placeholder="Example" autocomplete="nope">
+                        <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="direccionInput">
+                            <i class="bi bi-geo-alt-fill me-2" style="font-size: 1.4rem;"></i>
+                            Dirección
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 w-100">
+                        <input asp-for="cedula" value="@Model.cedula" type="number" min="0" class="form-control input-bg-custom" id="cedulaInput" placeholder="Example" autocomplete="nope">
+                        <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="cedulaInput">
+                            <i class="bi bi-person-vcard-fill me-2" style="font-size: 1.4rem;"></i>
+                            Cedula
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-8 col-sm-12 mt-md-0 mt-lg-5 px-4 d-flex position-relative flex-wrap justify-content-center bg-transparent rounded-1 box-shadow">
+                    <div class="form-floating mb-3 w-100">
+                        <input asp-for="apellidos" value="@Model.apellidos" type="text" minlength="3" class="form-control input-bg-custom" id="apellidosInput" placeholder="Example" autocomplete="nope">
+                        <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="apellidosInput">
+                            <i class="bi bi-alphabet me-2" style="font-size: 2rem;"></i>
+                            Apellidos
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 w-100">
+                        <input asp-for="telefono" value="@Model.telefono" type="tel" minlength="8" class="form-control input-bg-custom" id="floatingPassword" placeholder="Password" autocomplete="nope">
+                        <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="floatingPassword">
+                            <i class="bi bi-telephone-fill me-2" style="font-size: 1.2rem;"></i>
+                            Telefono
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 w-100">
+                        <input asp-for="correo" type="email" value="@Model.correo" class="form-control input-bg-custom" id="emailInput" placeholder="Password" autocomplete="nope">
+                        <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="emailInput">
+                            <i class="bi bi-envelope-fill me-2" style="font-size: 1.2rem;"></i>
+                            Correo
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 w-100"
+                         data-bs-toggle="tooltip" data-bs-placement="bottom"
+                         data-bs-title="@mensaje_contrasena">
+                        <input asp-for="constrasena" minlength="8" type="password" class="form-control input-bg-custom" id="contrasenaInput" placeholder="Example" autocomplete="nope">
+                        <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="contrasenaInput">
+                            <i class="bi bi-key-fill me-2" style="font-size: 1.4rem;"></i>
+                            Contraseña
+                        </label>
+                    </div>
+                    @if (ViewBag.accion == "Actualizar")
+                    {
+                        <div class="text-white form-check">
+                            <input class="form-check-input" type="checkbox" name="conservarContrasena" id="conservarContrasena">
+                            <label class="form-check-label" for="conservarContrasena">
+                                Conservar antigua contraseña
+                            </label>
+                        </div>
+                    }
+                </div>
+                
+                
+                <div class="col-10 text-center ">
+                    <button class="btn btn-success w-25 p-2 fs-5 btn-agregar-empleado mt-3">@ViewBag.accion</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/inicializador_Tooltips.js"></script>
+}
