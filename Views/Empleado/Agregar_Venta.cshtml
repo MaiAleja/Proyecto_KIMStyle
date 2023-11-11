@@ -1,0 +1,131 @@
+﻿@using System.Globalization;
+@{
+    ViewData["Title"] = "Agregar Prenda";
+    int id_factura = 0;
+    int id_usuario = 0;
+    if(ViewBag.venta != null)
+    {
+        id_factura = ViewBag.venta.id_factura;
+        id_usuario = ViewBag.venta.id_usuario;
+    }
+}
+
+@section estilo{
+    <link rel="stylesheet" href="~/css/agregar_venta.css" asp-append-version="true" />
+}
+
+@section links_extras{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Empleado" asp-action="Registro_Venta">Registro Venta</a>
+    </li>
+    <li class="nav-item">
+        <a class="active text-white fw-bold nav-link btn btn-danger" asp-controller="Home" asp-action="Cerrar_Sesion">Cerrar Sesion</a>
+    </li>
+}
+
+<div class="container">
+    @if (ViewBag.error != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade text-center show fw-bold mt-3 h4" role="alert">
+            @ViewBag.error
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    <div class="row justify-content-center">
+        <div class="col-12 mt-2"><h1 class="h1 text-white text-center">Creacion de Venta</h1></div>
+        <div class="col-12 col-md-10 col-lg-4">
+            <div class="row justify-content-center">
+                <div class="col-12 ">
+                    <form class="d-flex flex-wrap align-items-center" asp-controller="Empleado" asp-action="Comenzar_Venta">
+                        <div class="form-floating mb-3 w-50">
+                            <input @(ViewBag.venta != null ? "disabled" : "") name="id_usuario" type="text" class="form-control input-bg-custom" id="cedulaInput" placeholder="Example" autocomplete="nope">
+                            <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="cedulaInput">
+                                <i class="bi bi-person-vcard me-2" style="font-size: 1.2rem;"></i>
+                                Cedula del Usuario
+                            </label>
+                        </div>
+                        <button @(ViewBag.venta != null ? "disabled" : "") class="w-50 h-100 mb-3 py-3 fw-bold btn btn-success">Empezar Registro</button>
+                    </form>
+                </div>
+                <div class="col-12" >
+                    <form asp-controller="Empleado" asp-action="Agregar_Producto_Venta" asp-route-id_factura="@id_factura" asp-route-id_usuario="@id_usuario">
+                        <div class="form-floating mb-3 w-100">
+                            <input name="cod_producto" @(ViewBag.venta == null ? "disabled" : "") type="number" class="form-control input-bg-custom" id="codProductoInput" placeholder="Example" autocomplete="nope">
+                            <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="codProductoInput">
+                                <i class="bi bi-cloud-upc me-2" style="font-size: 1.2rem;"></i>
+                                Codigo producto
+                            </label>
+                        </div>
+                        <div class="form-floating mb-3 w-100">
+                            <input name="cantidad" @(ViewBag.venta == null ? "disabled" : "") type="number" class="form-control input-bg-custom" id="cantidadInput" placeholder="Example" autocomplete="nope">
+                            <label class="form-label input-bg-custom fs-6 d-flex align-items-center" for="cantidadInput">
+                                <i class="bi bi-123 me-2" style="font-size: 1.2rem;"></i>
+                                Cantidad
+                            </label>
+                        </div>
+                        <button @(ViewBag.venta == null ? "disabled" : "") class="w-50 btn btn-success m-auto fw-bold">Agregar Producto</button>
+                    </form>
+                </div>
+                @{
+                    bool habilitarTerminarVenta = false;
+                    if (ViewBag.productosRegistrados == null || ViewBag.productosRegistrados.Count == 0)
+                    {
+                        habilitarTerminarVenta = false;
+                    }
+                    else
+                    {
+                        habilitarTerminarVenta = true;
+                    }
+                }
+                <form asp-action="Registrar_Factura" asp-route-id_factura="@id_factura">
+                    <button  @(habilitarTerminarVenta ? "" : "disabled") class="col-8 btn btn-success mt-5 py-2 fw-bold">Terminar Registro de Venta</button>
+                </form>
+                <form asp-action="Eliminar_Factura" asp-route-id_factura="@id_factura">
+                    <button  @(habilitarTerminarVenta ? "" : "disabled") class="col-8 btn btn-danger mt-5 py-2 fw-bold">Descartar Este Registro</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="col-12 col-md-10 col-lg-8 bg-white bg-opacity-50 rounded-2 ">
+            <div class="row text-white justify-content-center">
+                @if(ViewBag.venta == null)
+                {
+                    <h2 class="col-12 mt-2 text-center fw-bold">Factura No Empezada</h2>
+                }
+                else
+                {
+                    <h3 class="col-12 mt-2 text-center fw-bold">Descripción de Factura</h3>
+                    <h5 class="col-6 mt-1 fw-bold">Codigo Factura: @id_factura</h5>
+                    <h5 class="col-6 mt-1 fw-bold">Cedula Cliente: @ViewBag.venta.id_usuario</h5>
+                    <div class="row contenedor-productos justify-content-center py-2">
+                        @if (ViewBag.productosRegistrados.Count == 0)
+                        {
+                            <div class="col-11 d-flex flex-wrap bg-danger bg-opacity-50 rounded-2 my-1 px-4">
+                                <h2>No Hay Productos Registrados</h2>
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach (Detalle_Factura detalle_factura in ViewBag.productosRegistrados)
+                            {
+                                <div class="col-11 d-flex flex-wrap bg-danger bg-opacity-50 rounded-2 my-1 ps-4">
+                                    <p class="w-50 fw-bold m-0 fs-5">Nombre Producto: @detalle_factura.Producto.Tipo_Prenda.descripcion @detalle_factura.Producto.Tipo_Marca.descripcion</p>
+                                    <p class="w-25 fw-bold m-0 fs-5">Cantidad: @detalle_factura.cantidad</p>
+                                    <a asp-route-id_detalle="@detalle_factura.id_detalle" asp-action="Eliminar_Producto_Venta" asp-controller="Empleado" class="w-auto btn btn-danger ms-auto">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+                                    <p class="w-50 fw-bold m-0 fs-5">Valor x Unidad: @detalle_factura.Producto.valor.ToString("C", new CultureInfo("es-CO"))</p>
+                                    <p class="w-50 fw-bold m-0 fs-5">Valor Total: @detalle_factura.total_producto.ToString("C", new CultureInfo("es-CO"))</p>
+                                    
+                                </div>
+                            }
+                        }
+                    </div>
+                    <h3 class="border-white text-center border-top py-3 fw-bolder">Total Compra: @ViewBag.venta.valor_total.ToString("C", new CultureInfo("es-CO"))</h3>
+
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

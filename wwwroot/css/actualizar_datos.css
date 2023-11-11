@@ -1,0 +1,89 @@
+﻿body {
+    background: url(../Images/bgCliente.jpg) top;
+    background-size: cover;
+    font-size: 16px;
+    font-family: Calibri;
+}
+
+h1 {
+    font-family: Candara;
+    font-weight: 900;
+    font-size: 3em;
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+}
+
+.form-control {
+    border: #975d0aff 2px solid;
+}
+
+.input-perfil{
+    display:flex;
+    width:100%;
+    justify-content:start;
+    align-items:center;
+}
+
+.input-perfil label{
+    margin:0; 
+    margin-right:2%;
+    width:40%;
+    color: #975d0aff;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.input-perfil input {
+        background: transparent;
+}
+
+.form-control[type=file]{
+    padding:14px 8px;
+}
+
+.form-control[type=file]::-webkit-file-upload-button {
+    display: none;
+}
+
+.form-control[type=file]::file-selector-button {
+    display: none;
+}
+
+
+.input-bg-custom {
+    background-color: transparent;
+    color: #975d0aff;
+}
+
+.form-floating input:focus {
+    color: #975d0aff;
+    background-color: transparent;
+}
+
+.form-control:focus + .form-label::after {
+    background-color: transparent !important;
+}
+
+.form-control:focus + .form-label {
+    color: #975d0aff !important;
+}
+
+.form-label::after {
+    background-color: transparent !important;
+}
+
+.form-floating > .form-control-plaintext ~ label, .form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-select ~ label {
+    color: #975d0aff;
+}
+
+.btn-actualizar, .btn-actualizar:hover, .btn-actualizar:focus, .btn-actualizar:active {
+    color: #975d0aff;
+    font-weight: 600;
+}
+
+.registro-logo {
+    width: 36%;
+    border-radius: 10%;
+}

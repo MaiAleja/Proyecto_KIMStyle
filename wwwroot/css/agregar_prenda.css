@@ -1,0 +1,114 @@
+﻿body {
+    background: url(../Images/bgEmpleado.jpg) top;
+    background-size: cover;
+    font-size: 16px;
+    font-family: Calibri;
+}
+
+h1 {
+    font-family: Candara;
+    font-weight: 900;
+    font-size: 3em;
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+}
+
+.form-control {
+    border: #bb608dff 2px solid;
+}
+
+.input-foto-prenda {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+}
+
+    .input-foto-prenda label {
+        margin: 0;
+        margin-right: 2%;
+        width: 40%;
+        color: #efa5caff;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .input-foto-prenda input {
+        background: transparent;
+        color: #efa5caff;
+    }
+
+.form-control[type=file] {
+    padding: 14px 8px;
+}
+
+    .form-control[type=file]::-webkit-file-upload-button {
+        display: none;
+    }
+
+    .form-control[type=file]::file-selector-button {
+        display: none;
+    }
+
+
+.input-bg-custom {
+    background-color: transparent;
+    color: #efa5caff;
+}
+
+.form-floating input:focus {
+    color: #efa5caff;
+    background-color: transparent;
+}
+
+.form-control:focus + .form-label::after {
+    background-color: transparent !important;
+}
+
+.form-control:focus + .form-label {
+    color: #efa5caff !important;
+}
+
+.form-label::after {
+    background-color: transparent !important;
+}
+
+.form-floating > .form-control-plaintext ~ label, .form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-select ~ label {
+    color: #efa5caff;
+}
+
+.btn-agregar-prenda, .btn-agregar-prenda:focus, .btn-agregar-prenda:active {
+    font-weight: 600;
+    border: 2px solid #efa5caff !important;
+    color: #efa5caff !important;
+}
+
+    .btn-agregar-prenda:hover {
+        border: 2px solid #bb608dff !important;
+        color: #bb608dff !important;
+    }
+
+    .registro-logo {
+        width: 36%;
+        border-radius: 10%;
+    }
+
+.select-label{
+    position:absolute;
+    top:-12px !important;
+}
+
+.form-select{
+    border: 2px solid #bb608dff;
+    padding-top:2em !important;
+    height:auto !important;
+}
+
+.form-select option{
+    background-color:#bb608dff;
+    font-weight:600;
+    color:#f5cce0ff;
+}
+

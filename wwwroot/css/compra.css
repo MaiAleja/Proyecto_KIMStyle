@@ -1,0 +1,25 @@
+﻿body {
+    background: url(../Images/bgCliente.jpg) top;
+    background-size: cover;
+    font-size: 16px;
+}
+
+.img-container {
+    display: flex;
+}
+
+    .img-container img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: 4px;
+        object-fit: cover;
+        object-position: center center;
+    }
+
+.info_contenedor{
+    width:100%;
+}
+
+.input-group-text{
+    cursor:pointer;
+}

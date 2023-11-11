@@ -1,0 +1,123 @@
+﻿@using System.Globalization;
+    @{
+    ViewData["Title"] = "Registro prenda";
+}
+
+@section estilo{
+    <link rel="stylesheet" href="~/css/index_empleado.css" asp-append-version="true" />
+}
+
+@section links_extras{
+
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Empleado" asp-action="Registro_Venta">Registro Venta</a>
+    </li>
+    <li class="nav-item">
+        <a class="active text-white fw-bold nav-link btn btn-danger" asp-controller="Home" asp-action="Cerrar_Sesion">Cerrar Sesion</a>
+    </li>
+}
+
+<div class="container-fluid">
+    @if (ViewBag.error != null)
+    {
+        <div class="row bg-white bg-opacity-50 rounded-2 mt-3 p-2 justify-content-center text-center align-items-center">
+            <p class="col-12 texto_alerta h4 m-0 fw-bolder text-center">@ViewBag.error</p>
+        </div>
+    }
+    <h1 class="text-center text-white py-4">Registro de Prendas </h1>
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-8 col-md-10 col-12 d-flex mb-4 justify-content-evenly">
+            <a class="btn btn-success fw-bold text-white border-2 border-dark me-4 p-2" asp-controller="Empleado" asp-action="Agregar_prenda">Agregar Prenda</a>
+            <form asp-controller="Empleado" asp-action="Modificar_Producto" class="input-group w-50">
+                <input type="number" name="cod_producto" min="1" class="form-control" placeholder="Codigo" aria-label="Input para poner el codigo de la prenda">
+                <button name="accion" value="Actualizar" class="btn btn-primary fw-bold">Editar</button>
+                <button name="accion" value="Eliminar" class="btn btn-danger fw-bold">Eliminar</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 p-0 table-responsive">
+            <table class="tabla-personalizada m-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Temporada</th>
+                        <th scope="col">Material</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Talla</th>
+                        <th scope="col">Imagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.listaProductos.Count == 0)
+                    {
+                        <tr>
+                            <th colspan="9" scope="row">Sin Datos</th>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (Producto producto in ViewBag.listaProductos)
+                        {
+                            <tr>
+                                <th scope="row">@producto.cod_producto</th>
+                                <td>@producto.Color.color_nombre</td>
+                                <td>@producto.temporada</td>
+                                <td>@producto.material</td>
+                                <td>@producto.cantidad</td>
+                                <td>@producto.valor.ToString("C", new CultureInfo("es-CO"))</td>
+                                <td>@producto.Tipo_Prenda.descripcion</td>
+                                <td>@producto.Tipo_Talla.talla</td>
+                                <td>
+                                    @if (producto.Imagen != null)
+                                    {
+                                        <button type="button"
+                                        data-image-url="data:image/jpeg;base64,@Convert.ToBase64String(producto.Imagen)"
+                                        class="btn btn-imagen"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#imagen_producto">
+                                            <i class="bi bi-image me-1"></i>
+                                            Imagen
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                     <span>No imagen</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).on("click", ".btn-imagen", function () {
+            var imagen = $(this).data("image-url");
+            $("#imagenProducto").attr("src", imagen);
+        });
+    </script>
+}
+
+@{ /* Modal para cargar la imagen */}
+
+<div class="modal fade" id="imagen_producto" tabindex="-1" aria-labelledby="ImagenProductoModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center  ">
+                <h5 class="fw-bold text-success w-75 m-auto" id="exampleModalLabel">Imagen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body img-container">
+                <img id="imagenProducto" src=""/>
+            </div>
+        </div>
+    </div>
+</div>

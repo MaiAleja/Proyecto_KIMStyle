@@ -1,0 +1,31 @@
+﻿@using System.Globalization;
+<span class="h4 text-center text-success me-3 mb-3">Carrito Compra</span>
+
+@if (ViewBag.listaProductosCarrito == null || ViewBag.listaProductosCarrito.Count == 0)
+{
+    <p class="text-danger fw-bold">Ningun producto todavia</p>
+}
+else
+{
+    <a asp-action="Compra" asp-controller="Cliente" class="btn btn-success fw-bold px-4 py-2 mb-3">
+        <i class="bi bi-cart-check-fill"></i>
+        Comprar
+    </a>
+    foreach (Producto producto in ViewBag.listaProductosCarrito)
+    {
+        <div class="d-flex bg-opacity-50 mb-2 p-2 bg-light text-black justify-content-between rounded-2 w-100">
+            @if(producto.Imagen != null)
+            {
+                <div class="img-container img-en-carrito">
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(producto.Imagen)" />
+                </div>
+            }
+            <div class="info-producto-carrito d-flex flex-wrap align-items-center justify-content-start">
+                <span class="h4 fw-bold me-1">@producto.Tipo_Prenda.descripcion</span>
+                <span class="h4 fw-bold me-auto">@producto.Tipo_Marca.descripcion</span>
+                <div class="w-75"></div>
+                <p class="mt-2 w-75 card-text badge px-3 text-bg-warning">@producto.valor.ToString("C", new CultureInfo("es-CO"))</p>
+            </div>
+        </div>
+    }
+}
